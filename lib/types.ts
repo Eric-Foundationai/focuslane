@@ -18,21 +18,24 @@ export type Task = {
   createdAt: string;
   dueDate?: string;
   resource?: string;
+  // spaced repetition / review
+  nextReview?: string; // yyyy-mm-dd
+  reviewIntervalDays?: number;
 };
 
 export type FocusSession = {
   id: string;
-  taskId: string;
+  taskId?: string;
   startTime: string;
-  endTime: string;
+  endTime?: string;
   completed: boolean;
-  interrupted: boolean;
+  interruptedCount: number;
   notes?: string;
 };
 
 export type DailyPlan = {
-  date: string;
-  topThree: string[];
+  date: string; // yyyy-mm-dd
+  topThree: string[]; // task ids
   reflection: string;
 };
 

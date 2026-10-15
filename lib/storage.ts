@@ -11,6 +11,8 @@ export const defaultLanes: Lane[] = [
   { id: 'lane-reading', name: 'Reading & research', color: '#8b5cf6' },
 ];
 
+const today = new Date().toISOString().slice(0, 10);
+
 const defaultTasks: Task[] = [
   {
     id: 'task-1',
@@ -22,6 +24,8 @@ const defaultTasks: Task[] = [
     status: 'todo',
     createdAt: new Date().toISOString(),
     resource: 'internal docs',
+    nextReview: today,
+    reviewIntervalDays: 1,
   },
   {
     id: 'task-2',
@@ -32,6 +36,7 @@ const defaultTasks: Task[] = [
     priority: 'high',
     status: 'todo',
     createdAt: new Date().toISOString(),
+    reviewIntervalDays: 3,
   },
   {
     id: 'task-3',
@@ -50,8 +55,8 @@ export const defaultState: AppState = {
   tasks: defaultTasks,
   focusSessions: [],
   dailyPlan: {
-    date: new Date().toISOString().slice(0, 10),
-    topThree: ['Read onboarding guide', 'Set up Python environment', 'Review developer setup checklist'],
+    date: today,
+    topThree: defaultTasks.slice(0, 3).map((t) => t.id),
     reflection: '',
   },
 };
